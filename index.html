@@ -1,9 +1,8 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Cricket Score Management</title>
 
@@ -16,14 +15,18 @@
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       background: #f4f6f8;
-      color: #222;
+      color: #1f2937;
     }
+
+    /* =========================
+       HEADER
+       ========================= */
 
     header {
       background: #1f4e78;
       color: white;
       padding: 18px 24px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     header h1 {
@@ -37,6 +40,10 @@
       font-size: 14px;
     }
 
+    /* =========================
+       CONTAINER / CARDS
+       ========================= */
+
     .container {
       max-width: 1100px;
       margin: 25px auto;
@@ -48,13 +55,48 @@
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
     .card h2 {
       margin-top: 0;
       color: #1f4e78;
     }
+
+    /* =========================
+       STATUS
+       ========================= */
+
+    .status {
+      margin-bottom: 20px;
+      padding: 12px 15px;
+      border-radius: 7px;
+      display: none;
+      font-size: 14px;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.success {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status.error {
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    .status.info {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
+    /* =========================
+       FORM
+       ========================= */
 
     .controls {
       display: flex;
@@ -65,7 +107,7 @@
 
     .field {
       flex: 1;
-      min-width: 220px;
+      min-width: 240px;
     }
 
     label {
@@ -99,6 +141,11 @@
       background: #173a5c;
     }
 
+    button:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
     button.secondary {
       background: #666;
     }
@@ -107,31 +154,77 @@
       background: #444;
     }
 
-    .status {
+    button.success {
+      background: #2e7d32;
+    }
+
+    button.success:hover {
+      background: #1b5e20;
+    }
+
+    /* =========================
+       GENERATION INFO
+       ========================= */
+
+    .generation-info {
       margin-top: 15px;
-      padding: 12px;
-      border-radius: 6px;
+      padding: 14px;
+      background: #f4f7fa;
+      border-radius: 7px;
+      border-left: 4px solid #1f4e78;
       display: none;
-      font-size: 14px;
     }
 
-    .status.success {
+    .generation-info.show {
       display: block;
-      background: #e8f5e9;
-      color: #2e7d32;
     }
 
-    .status.error {
-      display: block;
-      background: #ffebee;
-      color: #c62828;
+    .generation-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1f4e78;
+      margin-bottom: 7px;
     }
 
-    .status.info {
-      display: block;
-      background: #e3f2fd;
-      color: #1565c0;
+    .generation-details {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
     }
+
+    /* =========================
+       SUMMARY
+       ========================= */
+
+    .match-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .summary-item {
+      background: #f4f6f8;
+      padding: 15px;
+      border-radius: 7px;
+      text-align: center;
+    }
+
+    .summary-value {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1f4e78;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    /* =========================
+       TEAMS
+       ========================= */
 
     .teams {
       display: grid;
@@ -206,6 +299,42 @@
       color: #777;
     }
 
+    /* =========================
+       MATCH CREATED
+       ========================= */
+
+    .match-created {
+      display: none;
+    }
+
+    .match-created.show {
+      display: block;
+    }
+
+    .match-id-box {
+      background: #f4f6f8;
+      border: 1px solid #ddd;
+      padding: 14px;
+      border-radius: 7px;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+      word-break: break-all;
+      margin: 12px 0;
+    }
+
+    .locked-message {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 7px;
+      background: #fff8e1;
+      color: #8d6e00;
+      font-size: 13px;
+    }
+
+    /* =========================
+       API DEBUG
+       ========================= */
+
     .raw-data {
       display: none;
       background: #111;
@@ -220,33 +349,20 @@
       overflow-y: auto;
     }
 
-    .match-summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 15px;
+    /* =========================
+       HIDDEN
+       ========================= */
+
+    .hidden {
+      display: none !important;
     }
 
-    .summary-item {
-      background: #f4f6f8;
-      padding: 15px;
-      border-radius: 7px;
-      text-align: center;
-    }
-
-    .summary-value {
-      font-size: 22px;
-      font-weight: bold;
-      color: #1f4e78;
-    }
-
-    .summary-label {
-      font-size: 12px;
-      color: #666;
-      margin-top: 5px;
-    }
+    /* =========================
+       MOBILE
+       ========================= */
 
     @media (max-width: 750px) {
+
       .teams {
         grid-template-columns: 1fr;
       }
@@ -263,6 +379,10 @@
       .field {
         min-width: 100%;
       }
+
+      header h1 {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
@@ -271,105 +391,259 @@
 
 <header>
   <h1>🏏 Cricket Score Management</h1>
-  <p>Batting orders are automatically loaded from the Player Selection application</p>
+  <p>
+    Batting orders are automatically loaded from the Player Selection application
+  </p>
 </header>
 
 <div class="container">
 
-  <!-- API CONNECTION -->
+  <!-- =========================
+       STATUS
+       ========================= -->
+
+  <div id="status" class="status"></div>
+
+
+  <!-- =========================
+       STEP 1
+       SELECT GENERATION
+       ========================= -->
+
   <div class="card">
 
-    <h2>1. Load Batting Order</h2>
+    <h2>1. Select Saved Batting Order</h2>
 
     <div class="controls">
 
       <div class="field">
-        <label for="matchDate">Match Date</label>
-        <input type="date" id="matchDate">
+
+        <label for="generationSelect">
+          Saved Batting Order
+        </label>
+
+        <select id="generationSelect">
+
+          <option value="">
+            Loading saved batting orders...
+          </option>
+
+        </select>
+
       </div>
 
       <div>
-        <button onclick="loadBattingOrders()">
+
+        <button
+          id="loadGenerationBtn"
+          disabled
+          onclick="loadSelectedGeneration()">
+
           Load Batting Order
+
         </button>
+
       </div>
 
       <div>
-        <button class="secondary" onclick="loadAllData()">
-          Load All Data
+
+        <button
+          class="secondary"
+          onclick="loadGenerations()">
+
+          Refresh
+
         </button>
+
       </div>
 
     </div>
 
-    <div id="status" class="status"></div>
+
+    <div
+      id="generationInfo"
+      class="generation-info">
+
+      <div
+        id="generationTitle"
+        class="generation-title">
+      </div>
+
+      <div
+        id="generationDetails"
+        class="generation-details">
+      </div>
+
+    </div>
 
   </div>
 
 
-  <!-- MATCH INFORMATION -->
-  <div class="card" id="matchCard" style="display:none;">
+  <!-- =========================
+       STEP 2
+       MATCH INFORMATION
+       ========================= -->
 
-    <h2>Match Information</h2>
+  <div
+    id="matchSetupCard"
+    class="card hidden">
+
+    <h2>2. Match Information</h2>
+
+    <div class="controls">
+
+      <div class="field">
+
+        <label for="matchName">
+          Match Name
+        </label>
+
+        <input
+          type="text"
+          id="matchName"
+          placeholder="Example: Sunday League Match">
+
+      </div>
+
+      <div class="field">
+
+        <label for="overs">
+          Overs
+        </label>
+
+        <input
+          type="number"
+          id="overs"
+          value="6"
+          min="1">
+
+      </div>
+
+      <div class="field">
+
+        <label for="wickets">
+          Wickets
+        </label>
+
+        <input
+          type="number"
+          id="wickets"
+          value="6"
+          min="1">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       STEP 3
+       BATTING ORDER
+       ========================= -->
+
+  <div
+    id="battingCard"
+    class="card hidden">
+
+    <h2>3. Imported Batting Order</h2>
 
     <div class="match-summary">
 
       <div class="summary-item">
-        <div class="summary-value" id="displayDate">-</div>
-        <div class="summary-label">Match Date</div>
+
+        <div
+          id="displayGeneration"
+          class="summary-value">
+          -
+        </div>
+
+        <div class="summary-label">
+          Generation
+        </div>
+
       </div>
 
       <div class="summary-item">
-        <div class="summary-value" id="teamACount">0</div>
-        <div class="summary-label">Team A Players</div>
+
+        <div
+          id="teamACount"
+          class="summary-value">
+          0
+        </div>
+
+        <div class="summary-label">
+          Team 1 Players
+        </div>
+
       </div>
 
       <div class="summary-item">
-        <div class="summary-value" id="teamBCount">0</div>
-        <div class="summary-label">Team B Players</div>
+
+        <div
+          id="teamBCount"
+          class="summary-value">
+          0
+        </div>
+
+        <div class="summary-label">
+          Team 2 Players
+        </div>
+
       </div>
 
     </div>
 
-  </div>
-
-
-  <!-- BATTING ORDER -->
-  <div class="card" id="battingCard" style="display:none;">
-
-    <h2>2. Batting Order</h2>
+    <br>
 
     <div class="teams">
 
-      <!-- TEAM A -->
+      <!-- TEAM 1 -->
+
       <div class="team-card">
 
         <div class="team-header">
-          <span id="teamAName">Team A</span>
-          Team A
+
+          <span id="teamAName">
+            Team 1
+          </span>
+
+          Team 1
+
         </div>
 
         <div id="teamAPlayers">
+
           <div class="empty">
             No batting order loaded
           </div>
+
         </div>
 
       </div>
 
 
-      <!-- TEAM B -->
+      <!-- TEAM 2 -->
+
       <div class="team-card">
 
         <div class="team-header">
-          <span id="teamBName">Team B</span>
-          Team B
+
+          <span id="teamBName">
+            Team 2
+          </span>
+
+          Team 2
+
         </div>
 
         <div id="teamBPlayers">
+
           <div class="empty">
             No batting order loaded
           </div>
+
         </div>
 
       </div>
@@ -379,20 +653,98 @@
   </div>
 
 
-  <!-- DEBUG DATA -->
+  <!-- =========================
+       CREATE MATCH
+       ========================= -->
+
+  <div
+    id="createMatchCard"
+    class="card hidden">
+
+    <h2>4. Create Match</h2>
+
+    <p style="color:#666;font-size:14px;">
+      The selected batting order will be imported into the
+      Score Management system and locked for this match.
+    </p>
+
+    <button
+      id="createMatchBtn"
+      class="success"
+      onclick="createMatch()">
+
+      🏏 Create Match
+
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       MATCH CREATED
+       ========================= -->
+
+  <div
+    id="matchCreatedCard"
+    class="card match-created">
+
+    <h2>✅ Match Created Successfully</h2>
+
+    <p style="color:#666;font-size:14px;">
+      The batting order has been imported and locked for this match.
+    </p>
+
+    <strong>Match ID</strong>
+
+    <div
+      id="matchId"
+      class="match-id-box">
+    </div>
+
+    <div class="locked-message">
+
+      🔒 Batting order is locked for this match.
+      The next step will be the live scoring screen.
+
+    </div>
+
+    <br>
+
+    <button
+      onclick="prepareNextStep()">
+
+      Continue to Score Management
+
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       API DEBUG
+       ========================= -->
+
   <div class="card">
 
     <h2>
+
       API Response
+
       <button
         class="secondary"
-        style="float:right; padding:7px 12px; font-size:12px;"
+        style="float:right;padding:7px 12px;font-size:12px;"
         onclick="toggleRawData()">
+
         Show / Hide
+
       </button>
+
     </h2>
 
-    <pre id="rawData" class="raw-data"></pre>
+    <pre
+      id="rawData"
+      class="raw-data">
+    </pre>
 
   </div>
 
@@ -407,183 +759,297 @@ CONFIGURATION
 ==========================================================
 */
 
-// Existing Player Selection Google Apps Script API
 const API_URL =
   "https://script.google.com/macros/s/AKfycbzLwa1HU7GKqNxptYpsCkzffhg8ECxdkaK3eIkuoVn4A9HLuTPmnNHJY1YI6RqspB6JRg/exec";
 
 
 /*
 ==========================================================
-PAGE INITIALIZATION
+GLOBAL VARIABLES
 ==========================================================
 */
 
-window.addEventListener("DOMContentLoaded", () => {
+let generations = [];
 
-  const today = new Date();
+let selectedGeneration = null;
 
-  const yyyy = today.getFullYear();
-
-  const mm = String(today.getMonth() + 1)
-    .padStart(2, "0");
-
-  const dd = String(today.getDate())
-    .padStart(2, "0");
-
-  document.getElementById("matchDate").value =
-    `${yyyy}-${mm}-${dd}`;
-
-});
+let createdMatch = null;
 
 
 /*
 ==========================================================
-STATUS MESSAGE
+INITIALIZATION
 ==========================================================
 */
 
-function showStatus(message, type = "info") {
+window.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  const status = document.getElementById("status");
+    loadGenerations();
 
-  status.className = `status ${type}`;
+  }
+);
 
-  status.textContent = message;
+
+/*
+==========================================================
+STATUS
+==========================================================
+*/
+
+function showStatus(
+  message,
+  type = "info"
+) {
+
+  const status =
+    document.getElementById("status");
+
+  status.className =
+    "status show " + type;
+
+  status.textContent =
+    message;
 
 }
 
 
 /*
 ==========================================================
-LOAD ALL DATA
+API GET
 ==========================================================
 */
 
-async function loadAllData() {
+async function apiGet(
+  params
+) {
 
-  showStatus(
-    "Connecting to the existing Player Selection API...",
-    "info"
-  );
+  const url =
+    API_URL +
+    "?" +
+    new URLSearchParams(params)
+      .toString();
+
+  const response =
+    await fetch(
+      url,
+      {
+        method: "GET",
+        cache: "no-cache"
+      }
+    );
+
+  if (!response.ok) {
+
+    throw new Error(
+      "HTTP error " +
+      response.status
+    );
+
+  }
+
+  const data =
+    await response.json();
+
+  document.getElementById(
+    "rawData"
+  ).textContent =
+    JSON.stringify(
+      data,
+      null,
+      2
+    );
+
+  if (
+    data.success === false
+  ) {
+
+    throw new Error(
+      data.message ||
+      "API request failed"
+    );
+
+  }
+
+  return data;
+
+}
+
+
+/*
+==========================================================
+API POST
+==========================================================
+*/
+
+async function apiPost(
+  payload
+) {
+
+  const response =
+    await fetch(
+      API_URL,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
+
+        body:
+          JSON.stringify(payload)
+      }
+    );
+
+  if (!response.ok) {
+
+    throw new Error(
+      "HTTP error " +
+      response.status
+    );
+
+  }
+
+  const data =
+    await response.json();
+
+  document.getElementById(
+    "rawData"
+  ).textContent =
+    JSON.stringify(
+      data,
+      null,
+      2
+    );
+
+  if (
+    data.success === false
+  ) {
+
+    throw new Error(
+      data.message ||
+      "API request failed"
+    );
+
+  }
+
+  return data;
+
+}
+
+
+/*
+==========================================================
+LOAD SAVED GENERATIONS
+==========================================================
+*/
+
+async function loadGenerations() {
+
+  const select =
+    document.getElementById(
+      "generationSelect"
+    );
 
   try {
 
-    const response = await fetch(API_URL, {
-      method: "GET",
-      cache: "no-cache"
-    });
+    showStatus(
+      "Loading saved batting orders...",
+      "info"
+    );
 
-    if (!response.ok) {
-      throw new Error(
-        `HTTP error ${response.status}`
+    select.innerHTML =
+      "<option value=''>Loading...</option>";
+
+    document.getElementById(
+      "loadGenerationBtn"
+    ).disabled = true;
+
+
+    const data =
+      await apiGet(
+        {
+          action: "generations"
+        }
       );
+
+
+    generations =
+      data.generations || [];
+
+
+    select.innerHTML =
+      "<option value=''>" +
+      "Select a saved batting order" +
+      "</option>";
+
+
+    if (
+      generations.length === 0
+    ) {
+
+      select.innerHTML =
+        "<option value=''>" +
+        "No saved batting orders found" +
+        "</option>";
+
+      showStatus(
+        "No saved batting-order generations were found.",
+        "error"
+      );
+
+      return;
+
     }
 
-    const data = await response.json();
 
-    console.log("API RESPONSE:", data);
+    generations.forEach(
+      generation => {
 
-    document.getElementById("rawData").textContent =
-      JSON.stringify(data, null, 2);
+        const option =
+          document.createElement(
+            "option"
+          );
 
-    processApiData(data);
+        option.value =
+          generation.generationId;
+
+        option.textContent =
+          formatGenerationOption(
+            generation
+          );
+
+        select.appendChild(
+          option
+        );
+
+      }
+    );
+
 
     showStatus(
-      "Batting-order data loaded successfully.",
+      "Saved batting orders loaded successfully.",
       "success"
     );
 
-  } catch (error) {
-
-    console.error(error);
-
-    showStatus(
-      "Failed to load batting orders: " + error.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/*
-==========================================================
-LOAD BATTING ORDER FOR DATE
-==========================================================
-*/
-
-async function loadBattingOrders() {
-
-  const date =
-    document.getElementById("matchDate").value;
-
-  if (!date) {
-
-    showStatus(
-      "Please select a match date.",
-      "error"
-    );
-
-    return;
-  }
-
-  showStatus(
-    "Loading batting order...",
-    "info"
-  );
-
-  /*
-   * IMPORTANT:
-   *
-   * We initially load the API without changing the
-   * existing API implementation.
-   *
-   * Once we confirm the exact response structure,
-   * we will optimize this request to retrieve only
-   * the selected date.
-   */
-
-  try {
-
-    const response = await fetch(API_URL, {
-      method: "GET",
-      cache: "no-cache"
-    });
-
-    if (!response.ok) {
-
-      throw new Error(
-        `HTTP error ${response.status}`
-      );
-
-    }
-
-    const data = await response.json();
-
-    console.log(
-      "BATTTING ORDER API RESPONSE:",
-      data
-    );
-
-    document.getElementById("rawData").textContent =
-      JSON.stringify(data, null, 2);
-
-    /*
-     * Store globally so the scoring application can
-     * use exactly the same player objects later.
-     */
-
-    window.battingOrderApiData = data;
-
-    processApiData(data, date);
 
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      "Generation loading error:",
+      error
+    );
+
+    select.innerHTML =
+      "<option value=''>" +
+      "Unable to load batting orders" +
+      "</option>";
+
 
     showStatus(
-      "Unable to load batting order: " +
+      "Failed to load batting orders: " +
       error.message,
       "error"
     );
@@ -595,253 +1061,192 @@ async function loadBattingOrders() {
 
 /*
 ==========================================================
-PROCESS API DATA
+FORMAT GENERATION OPTION
 ==========================================================
 */
 
-function processApiData(data, selectedDate = null) {
+function formatGenerationOption(
+  generation
+) {
 
-  console.log(
-    "Processing API data:",
-    data
+  const date =
+    formatDate(
+      generation.matchDate
+    );
+
+  const players =
+    generation.playerCount ||
+    0;
+
+  return (
+    date +
+    " — " +
+    generation.generationId +
+    " (" +
+    players +
+    " players)"
   );
 
-  /*
-   * The API structure will be confirmed from the actual
-   * response.
-   *
-   * This function supports several common structures so
-   * that we can immediately test the frontend.
-   */
-
-  let teamA = [];
-  let teamB = [];
-
-  let teamAName = "Team A";
-  let teamBName = "Team B";
-
-  let matchDate = selectedDate || "";
+}
 
 
-  /*
-  --------------------------------------------------------
-  CASE 1
-  --------------------------------------------------------
-  {
-    teamA: [...],
-    teamB: [...]
-  }
-  */
+/*
+==========================================================
+SELECT GENERATION
+==========================================================
+*/
 
-  if (data && !Array.isArray(data)) {
+document
+  .getElementById(
+    "generationSelect"
+  )
+  .addEventListener(
+    "change",
+    function () {
 
-    if (Array.isArray(data.teamA)) {
-      teamA = data.teamA;
-    }
+      const value =
+        this.value;
 
-    if (Array.isArray(data.teamB)) {
-      teamB = data.teamB;
-    }
-
-    if (data.teamAName) {
-      teamAName = data.teamAName;
-    }
-
-    if (data.teamBName) {
-      teamBName = data.teamBName;
-    }
-
-    if (data.date) {
-      matchDate = data.date;
-    }
-
-  }
-
-
-  /*
-  --------------------------------------------------------
-  CASE 2
-  --------------------------------------------------------
-  {
-    data: {
-      teamA: [],
-      teamB: []
-    }
-  }
-  */
-
-  if (
-    data &&
-    data.data &&
-    typeof data.data === "object"
-  ) {
-
-    if (Array.isArray(data.data.teamA)) {
-      teamA = data.data.teamA;
-    }
-
-    if (Array.isArray(data.data.teamB)) {
-      teamB = data.data.teamB;
-    }
-
-    if (data.data.teamAName) {
-      teamAName = data.data.teamAName;
-    }
-
-    if (data.data.teamBName) {
-      teamBName = data.data.teamBName;
-    }
-
-    if (data.data.date) {
-      matchDate = data.data.date;
-    }
-
-  }
-
-
-  /*
-  --------------------------------------------------------
-  CASE 3
-  --------------------------------------------------------
-  Array of batting-history records
-  --------------------------------------------------------
-  */
-
-  if (Array.isArray(data)) {
-
-    const records = data;
-
-    let filteredRecords = records;
-
-    if (selectedDate) {
-
-      filteredRecords = records.filter(record => {
-
-        const recordDate =
-          record.date ||
-          record.matchDate ||
-          record.Date ||
-          record["Match Date"];
-
-        return String(recordDate)
-          .substring(0, 10) === selectedDate;
-
-      });
+      document.getElementById(
+        "loadGenerationBtn"
+      ).disabled =
+        !value;
 
     }
-
-    /*
-     * Try to identify team from each record.
-     */
-
-    filteredRecords.forEach(record => {
-
-      const team =
-        record.team ||
-        record.Team ||
-        record.teamName ||
-        record["Team"];
-
-      const player =
-        normalizePlayer(record);
-
-      if (!player) {
-        return;
-      }
-
-      if (
-        String(team).toLowerCase() ===
-        "team a"
-      ) {
-
-        teamA.push(player);
-
-      } else if (
-        String(team).toLowerCase() ===
-        "team b"
-      ) {
-
-        teamB.push(player);
-
-      }
-
-    });
-
-  }
-
-
-  /*
-  --------------------------------------------------------
-  NORMALIZE PLAYERS
-  --------------------------------------------------------
-  */
-
-  teamA = teamA
-    .map(normalizePlayer)
-    .filter(Boolean);
-
-  teamB = teamB
-    .map(normalizePlayer)
-    .filter(Boolean);
-
-
-  /*
-  --------------------------------------------------------
-  SORT BY BATTING NUMBER
-  --------------------------------------------------------
-  */
-
-  teamA.sort(
-    (a, b) =>
-      Number(a.battingNumber) -
-      Number(b.battingNumber)
-  );
-
-  teamB.sort(
-    (a, b) =>
-      Number(a.battingNumber) -
-      Number(b.battingNumber)
   );
 
 
-  /*
-  --------------------------------------------------------
-  DISPLAY
-  --------------------------------------------------------
-  */
+/*
+==========================================================
+LOAD SELECTED GENERATION
+==========================================================
+*/
 
-  displayBattingOrders(
-    teamA,
-    teamB,
-    teamAName,
-    teamBName,
-    matchDate
-  );
+async function loadSelectedGeneration() {
+
+  const generationId =
+    document.getElementById(
+      "generationSelect"
+    ).value;
 
 
-  /*
-  --------------------------------------------------------
-  NO DATA MESSAGE
-  --------------------------------------------------------
-  */
-
-  if (
-    teamA.length === 0 &&
-    teamB.length === 0
-  ) {
+  if (!generationId) {
 
     showStatus(
-      "API connected successfully, but no recognizable batting-order records were found for the selected date. Check the API Response section below.",
+      "Please select a batting order first.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    document.getElementById(
+      "loadGenerationBtn"
+    ).disabled = true;
+
+
+    showStatus(
+      "Loading selected batting order...",
       "info"
     );
 
-  } else {
+
+    const data =
+      await apiGet(
+        {
+          action: "setup",
+          generationId:
+            generationId
+        }
+      );
+
+
+    selectedGeneration =
+      data.generation;
+
+
+    if (
+      !selectedGeneration
+    ) {
+
+      throw new Error(
+        "The API did not return generation data."
+      );
+
+    }
+
+
+    displayGenerationInfo(
+      selectedGeneration
+    );
+
+
+    displayPlayers(
+      selectedGeneration.players || []
+    );
+
+
+    document
+      .getElementById(
+        "matchSetupCard"
+      )
+      .classList
+      .remove("hidden");
+
+
+    document
+      .getElementById(
+        "battingCard"
+      )
+      .classList
+      .remove("hidden");
+
+
+    document
+      .getElementById(
+        "createMatchCard"
+      )
+      .classList
+      .remove("hidden");
+
+
+    document
+      .getElementById(
+        "matchCreatedCard"
+      )
+      .classList
+      .remove("show");
+
 
     showStatus(
-      `Loaded ${teamA.length} Team A players and ${teamB.length} Team B players.`,
+      "Batting order loaded successfully.",
       "success"
     );
 
+
+  } catch (error) {
+
+    console.error(
+      "Generation setup error:",
+      error
+    );
+
+    showStatus(
+      "Failed to load batting order: " +
+      error.message,
+      "error"
+    );
+
+  } finally {
+
+    document.getElementById(
+      "loadGenerationBtn"
+    ).disabled = false;
+
   }
 
 }
@@ -849,134 +1254,204 @@ function processApiData(data, selectedDate = null) {
 
 /*
 ==========================================================
-NORMALIZE PLAYER
+DISPLAY GENERATION INFORMATION
 ==========================================================
 */
 
-function normalizePlayer(player) {
-
-  if (!player || typeof player !== "object") {
-    return null;
-  }
-
-
-  const playerId =
-    player.playerId ??
-    player.PlayerID ??
-    player.playerID ??
-    player["Player ID"] ??
-    player.id ??
-    player.ID ??
-    "";
-
-
-  const playerName =
-    player.playerName ??
-    player.PlayerName ??
-    player.name ??
-    player.Name ??
-    player["Player Name"] ??
-    "";
-
-
-  const battingNumber =
-    player.battingNumber ??
-    player.BattingNumber ??
-    player.battingNo ??
-    player.battingOrder ??
-    player.BattingOrder ??
-    player["Batting Number"] ??
-    player["Batting Order"] ??
-    player.position ??
-    player.Position ??
-    "";
-
-
-  /*
-   * If this record contains no useful player information,
-   * ignore it.
-   */
-
-  if (
-    playerName === "" &&
-    playerId === "" &&
-    battingNumber === ""
-  ) {
-
-    return null;
-
-  }
-
-
-  return {
-
-    playerId: String(playerId),
-
-    playerName:
-      String(playerName || "Unknown Player"),
-
-    battingNumber:
-      battingNumber === ""
-        ? 999
-        : Number(battingNumber)
-
-  };
-
-}
-
-
-/*
-==========================================================
-DISPLAY BATTING ORDERS
-==========================================================
-*/
-
-function displayBattingOrders(
-  teamA,
-  teamB,
-  teamAName,
-  teamBName,
-  matchDate
+function displayGenerationInfo(
+  generation
 ) {
 
-  document.getElementById("matchCard")
-    .style.display = "block";
-
-  document.getElementById("battingCard")
-    .style.display = "block";
-
-
-  document.getElementById("teamAName")
-    .textContent = teamAName;
-
-  document.getElementById("teamBName")
-    .textContent = teamBName;
+  const info =
+    document.getElementById(
+      "generationInfo"
+    );
 
 
-  document.getElementById("displayDate")
-    .textContent =
-      matchDate || "-";
+  const title =
+    document.getElementById(
+      "generationTitle"
+    );
 
 
-  document.getElementById("teamACount")
-    .textContent =
-      teamA.length;
+  const details =
+    document.getElementById(
+      "generationDetails"
+    );
 
 
-  document.getElementById("teamBCount")
-    .textContent =
-      teamB.length;
+  title.textContent =
+    "Generation: " +
+    generation.generationId;
+
+
+  const teamCounts =
+    generation.teamCounts || {};
+
+
+  const countText =
+    Object.entries(
+      teamCounts
+    )
+    .map(
+      ([team, count]) =>
+        team +
+        ": " +
+        count
+    )
+    .join(" • ");
+
+
+  details.innerHTML =
+    "Date: " +
+    escapeHtml(
+      formatDate(
+        generation.matchDate
+      )
+    ) +
+
+    " &nbsp; | &nbsp; " +
+
+    "Players: " +
+    (generation.playerCount || 0) +
+
+    " &nbsp; | &nbsp; " +
+
+    escapeHtml(
+      countText
+    );
+
+
+  info.classList.add(
+    "show"
+  );
+
+}
+
+
+/*
+==========================================================
+DISPLAY PLAYERS
+==========================================================
+*/
+
+function displayPlayers(
+  players
+) {
+
+  const teams = {};
+
+
+  players.forEach(
+    player => {
+
+      const team =
+        player.team ||
+        "Unknown Team";
+
+
+      if (!teams[team]) {
+
+        teams[team] = [];
+
+      }
+
+
+      teams[team].push(
+        player
+      );
+
+    }
+  );
+
+
+  Object.values(
+    teams
+  ).forEach(
+    teamPlayers => {
+
+      teamPlayers.sort(
+        (
+          a,
+          b
+        ) =>
+          Number(
+            a.battingOrder
+          ) -
+          Number(
+            b.battingOrder
+          )
+      );
+
+    }
+  );
+
+
+  const teamNames =
+    Object.keys(
+      teams
+    );
+
+
+  const team1Name =
+    teamNames[0] ||
+    "Team 1";
+
+
+  const team2Name =
+    teamNames[1] ||
+    "Team 2";
+
+
+  const team1Players =
+    teams[team1Name] ||
+    [];
+
+
+  const team2Players =
+    teams[team2Name] ||
+    [];
+
+
+  document.getElementById(
+    "teamAName"
+  ).textContent =
+    team1Name;
+
+
+  document.getElementById(
+    "teamBName"
+  ).textContent =
+    team2Name;
+
+
+  document.getElementById(
+    "teamACount"
+  ).textContent =
+    team1Players.length;
+
+
+  document.getElementById(
+    "teamBCount"
+  ).textContent =
+    team2Players.length;
+
+
+  document.getElementById(
+    "displayGeneration"
+  ).textContent =
+    players.length;
 
 
   renderTeamPlayers(
     "teamAPlayers",
-    teamA
+    team1Players
   );
 
 
   renderTeamPlayers(
     "teamBPlayers",
-    teamB
+    team2Players
   );
 
 }
@@ -984,7 +1459,7 @@ function displayBattingOrders(
 
 /*
 ==========================================================
-RENDER TEAM PLAYERS
+RENDER PLAYERS
 ==========================================================
 */
 
@@ -994,108 +1469,439 @@ function renderTeamPlayers(
 ) {
 
   const container =
-    document.getElementById(containerId);
+    document.getElementById(
+      containerId
+    );
 
-  container.innerHTML = "";
+
+  container.innerHTML =
+    "";
 
 
-  if (!players || players.length === 0) {
+  if (
+    !players ||
+    players.length === 0
+  ) {
 
     container.innerHTML =
-      `<div class="empty">
-        No batting order available
-      </div>`;
+      "<div class='empty'>" +
+      "No batting order available" +
+      "</div>";
 
     return;
 
   }
 
 
-  players.forEach(player => {
+  players.forEach(
+    player => {
 
-    const row =
-      document.createElement("div");
-
-    row.className =
-      "player-row";
-
-
-    const number =
-      document.createElement("div");
-
-    number.className =
-      "batting-number";
-
-    number.textContent =
-      player.battingNumber;
+      const row =
+        document.createElement(
+          "div"
+        );
 
 
-    const info =
-      document.createElement("div");
-
-    info.className =
-      "player-info";
+      row.className =
+        "player-row";
 
 
-    const name =
-      document.createElement("div");
-
-    name.className =
-      "player-name";
-
-    name.textContent =
-      player.playerName;
+      const number =
+        document.createElement(
+          "div"
+        );
 
 
-    const id =
-      document.createElement("div");
-
-    id.className =
-      "player-id";
-
-    id.textContent =
-      "Player ID: " +
-      player.playerId;
+      number.className =
+        "batting-number";
 
 
-    info.appendChild(name);
-
-    info.appendChild(id);
-
-
-    row.appendChild(number);
-
-    row.appendChild(info);
+      number.textContent =
+        player.battingOrder;
 
 
-    container.appendChild(row);
+      const info =
+        document.createElement(
+          "div"
+        );
 
-  });
+
+      info.className =
+        "player-info";
+
+
+      const name =
+        document.createElement(
+          "div"
+        );
+
+
+      name.className =
+        "player-name";
+
+
+      name.textContent =
+        player.playerName ||
+        "Unknown Player";
+
+
+      const id =
+        document.createElement(
+          "div"
+        );
+
+
+      id.className =
+        "player-id";
+
+
+      id.textContent =
+        "Player ID: " +
+        (
+          player.playerId ||
+          "-"
+        );
+
+
+      info.appendChild(
+        name
+      );
+
+
+      info.appendChild(
+        id
+      );
+
+
+      row.appendChild(
+        number
+      );
+
+
+      row.appendChild(
+        info
+      );
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
 
 }
 
 
 /*
 ==========================================================
-RAW DATA TOGGLE
+CREATE MATCH
+==========================================================
+*/
+
+async function createMatch() {
+
+  if (
+    !selectedGeneration
+  ) {
+
+    showStatus(
+      "Please load a batting order first.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const matchName =
+    document.getElementById(
+      "matchName"
+    ).value.trim();
+
+
+  const overs =
+    Number(
+      document.getElementById(
+        "overs"
+      ).value
+    );
+
+
+  const wickets =
+    Number(
+      document.getElementById(
+        "wickets"
+      ).value
+    );
+
+
+  if (
+    !overs ||
+    overs < 1
+  ) {
+
+    showStatus(
+      "Please enter a valid number of overs.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if (
+    !wickets ||
+    wickets < 1
+  ) {
+
+    showStatus(
+      "Please enter a valid number of wickets.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const button =
+    document.getElementById(
+      "createMatchBtn"
+    );
+
+
+  try {
+
+    button.disabled = true;
+
+
+    showStatus(
+      "Creating match...",
+      "info"
+    );
+
+
+    const data =
+      await apiPost(
+        {
+          action:
+            "createMatch",
+
+          generationId:
+            selectedGeneration.generationId,
+
+          matchName:
+            matchName,
+
+          overs:
+            overs,
+
+          wickets:
+            wickets
+        }
+      );
+
+
+    createdMatch =
+      data.match;
+
+
+    if (
+      !createdMatch
+    ) {
+
+      throw new Error(
+        "The API did not return a Match ID."
+      );
+
+    }
+
+
+    document.getElementById(
+      "matchId"
+    ).textContent =
+      createdMatch.matchId;
+
+
+    document
+      .getElementById(
+        "matchCreatedCard"
+      )
+      .classList
+      .add("show");
+
+
+    showStatus(
+      "Match created successfully.",
+      "success"
+    );
+
+
+    button.textContent =
+      "Match Created";
+
+
+  } catch (error) {
+
+    console.error(
+      "Create match error:",
+      error
+    );
+
+
+    showStatus(
+      "Failed to create match: " +
+      error.message,
+      "error"
+    );
+
+
+    button.disabled = false;
+
+  }
+
+}
+
+
+/*
+==========================================================
+NEXT STEP
+==========================================================
+*/
+
+function prepareNextStep() {
+
+  if (
+    !createdMatch
+  ) {
+
+    return;
+
+  }
+
+
+  alert(
+    "Match setup is complete.\n\n" +
+
+    "Match ID:\n" +
+
+    createdMatch.matchId +
+
+    "\n\n" +
+
+    "The Live Score Management screen " +
+
+    "will be added in the next step."
+  );
+
+}
+
+
+/*
+==========================================================
+DATE FORMAT
+==========================================================
+*/
+
+function formatDate(
+  value
+) {
+
+  if (!value) {
+
+    return "Unknown date";
+
+  }
+
+
+  const date =
+    new Date(value);
+
+
+  if (
+    isNaN(
+      date.getTime()
+    )
+  ) {
+
+    return String(
+      value
+    );
+
+  }
+
+
+  return date.toLocaleString();
+
+}
+
+
+/*
+==========================================================
+HTML ESCAPE
+==========================================================
+*/
+
+function escapeHtml(
+  value
+) {
+
+  return String(
+    value ?? ""
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+
+/*
+==========================================================
+RAW API DATA
 ==========================================================
 */
 
 function toggleRawData() {
 
   const rawData =
-    document.getElementById("rawData");
+    document.getElementById(
+      "rawData"
+    );
+
 
   if (
-    rawData.style.display === "none" ||
-    rawData.style.display === ""
+    rawData.style.display ===
+    "block"
   ) {
 
-    rawData.style.display = "block";
+    rawData.style.display =
+      "none";
 
   } else {
 
-    rawData.style.display = "none";
+    rawData.style.display =
+      "block";
 
   }
 
@@ -1105,4 +1911,3 @@ function toggleRawData() {
 
 </body>
 </html>
-```
