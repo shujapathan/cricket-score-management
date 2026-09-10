@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cricket Score Management</title>
 
   <style>
@@ -13,375 +12,262 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, sans-serif;
       background: #f4f6f8;
-      color: #1f2937;
+      color: #222;
     }
 
-    /* =========================
-       HEADER
-       ========================= */
-
-    header {
-      background: #1f4e78;
-      color: white;
-      padding: 18px 24px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 16px;
     }
 
-    header h1 {
-      margin: 0;
+    h1 {
+      text-align: center;
+      margin: 8px 0 20px;
       font-size: 26px;
     }
 
-    header p {
-      margin: 6px 0 0;
-      opacity: 0.9;
-      font-size: 14px;
+    h2 {
+      font-size: 20px;
+      margin: 0 0 15px;
     }
 
-    /* =========================
-       CONTAINER / CARDS
-       ========================= */
-
-    .container {
-      max-width: 1100px;
-      margin: 25px auto;
-      padding: 0 15px;
+    h3 {
+      font-size: 17px;
+      margin: 15px 0 10px;
     }
 
     .card {
       background: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: #1f4e78;
-    }
-
-    /* =========================
-       STATUS
-       ========================= */
-
-    .status {
-      margin-bottom: 20px;
-      padding: 12px 15px;
-      border-radius: 7px;
-      display: none;
-      font-size: 14px;
-    }
-
-    .status.show {
-      display: block;
-    }
-
-    .status.success {
-      background: #e8f5e9;
-      color: #2e7d32;
-    }
-
-    .status.error {
-      background: #ffebee;
-      color: #c62828;
-    }
-
-    .status.info {
-      background: #e3f2fd;
-      color: #1565c0;
-    }
-
-    /* =========================
-       FORM
-       ========================= */
-
-    .controls {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: end;
-    }
-
-    .field {
-      flex: 1;
-      min-width: 240px;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     label {
       display: block;
       font-weight: bold;
       margin-bottom: 6px;
-      font-size: 14px;
     }
 
-    select,
-    input {
+    input,
+    select {
       width: 100%;
-      padding: 11px;
+      padding: 13px;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 14px;
       background: white;
     }
 
     button {
-      padding: 11px 20px;
-      border: none;
-      border-radius: 6px;
-      background: #1f4e78;
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #173a5c;
-    }
-
-    button:disabled {
-      background: #9ca3af;
-      cursor: not-allowed;
-    }
-
-    button.secondary {
-      background: #666;
-    }
-
-    button.secondary:hover {
-      background: #444;
-    }
-
-    button.success {
-      background: #2e7d32;
-    }
-
-    button.success:hover {
-      background: #1b5e20;
-    }
-
-    /* =========================
-       GENERATION INFO
-       ========================= */
-
-    .generation-info {
-      margin-top: 15px;
+      width: 100%;
       padding: 14px;
-      background: #f4f7fa;
-      border-radius: 7px;
-      border-left: 4px solid #1f4e78;
-      display: none;
-    }
-
-    .generation-info.show {
-      display: block;
-    }
-
-    .generation-title {
+      border: none;
+      border-radius: 8px;
       font-size: 16px;
       font-weight: bold;
-      color: #1f4e78;
-      margin-bottom: 7px;
-    }
-
-    .generation-details {
-      font-size: 13px;
-      color: #666;
-      line-height: 1.7;
-    }
-
-    /* =========================
-       SUMMARY
-       ========================= */
-
-    .match-summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    .summary-item {
-      background: #f4f6f8;
-      padding: 15px;
-      border-radius: 7px;
-      text-align: center;
-    }
-
-    .summary-value {
-      font-size: 22px;
-      font-weight: bold;
-      color: #1f4e78;
-    }
-
-    .summary-label {
-      font-size: 12px;
-      color: #666;
+      cursor: pointer;
       margin-top: 5px;
     }
 
-    /* =========================
-       TEAMS
-       ========================= */
-
-    .teams {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
-    .team-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      background: white;
-    }
-
-    .team-header {
-      background: #1f4e78;
+    .primary {
+      background: #1976d2;
       color: white;
-      padding: 14px 16px;
-      font-size: 18px;
+    }
+
+    .success {
+      background: #2e7d32;
+      color: white;
+    }
+
+    .secondary {
+      background: #607d8b;
+      color: white;
+    }
+
+    .danger {
+      background: #c62828;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: none;
       font-weight: bold;
     }
 
-    .team-header span {
-      float: right;
-      font-size: 13px;
-      opacity: 0.85;
+    .message.success-msg {
+      display: block;
+      background: #e8f5e9;
+      color: #2e7d32;
     }
 
-    .player-row {
-      display: flex;
-      align-items: center;
-      padding: 12px 15px;
-      border-bottom: 1px solid #eee;
+    .message.error-msg {
+      display: block;
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .info-box {
+      background: #f5f5f5;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .info-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
 
-    .player-row:last-child {
+    .team-box {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .team-title {
+      font-weight: bold;
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .player {
+      padding: 7px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    .player:last-child {
       border-bottom: none;
     }
 
-    .batting-number {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      background: #e8eef5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .order {
+      display: inline-block;
+      min-width: 28px;
       font-weight: bold;
-      color: #1f4e78;
-      flex-shrink: 0;
     }
 
-    .player-info {
-      flex: 1;
-    }
-
-    .player-name {
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .player-id {
-      font-size: 12px;
-      color: #777;
-      margin-top: 3px;
-    }
-
-    .empty {
-      padding: 25px;
-      text-align: center;
-      color: #777;
-    }
-
-    /* =========================
-       MATCH CREATED
-       ========================= */
-
-    .match-created {
-      display: none;
-    }
-
-    .match-created.show {
-      display: block;
-    }
-
-    .match-id-box {
-      background: #f4f6f8;
-      border: 1px solid #ddd;
-      padding: 14px;
-      border-radius: 7px;
-      font-family: Consolas, monospace;
-      font-size: 14px;
-      word-break: break-all;
-      margin: 12px 0;
-    }
-
-    .locked-message {
-      margin-top: 12px;
+    .match-id {
+      background: #eef5ff;
       padding: 12px;
-      border-radius: 7px;
-      background: #fff8e1;
-      color: #8d6e00;
-      font-size: 13px;
+      border-radius: 8px;
+      word-break: break-all;
+      font-family: monospace;
+      margin-bottom: 15px;
     }
 
-    /* =========================
-       API DEBUG
-       ========================= */
+    .status {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #fff3cd;
+      color: #856404;
+      font-size: 13px;
+      font-weight: bold;
+    }
 
-    .raw-data {
-      display: none;
-      background: #111;
-      color: #ddd;
-      padding: 15px;
+    .status.live {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .innings-summary {
+      background: #f5f9ff;
+      border-left: 4px solid #1976d2;
+      padding: 14px;
       border-radius: 6px;
+    }
+
+    .innings-summary div {
+      margin-bottom: 7px;
+    }
+
+    .innings-summary div:last-child {
+      margin-bottom: 0;
+    }
+
+    .debug {
+      margin-top: 20px;
+    }
+
+    .debug summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    pre {
+      background: #1e1e1e;
+      color: #eee;
+      padding: 12px;
+      border-radius: 8px;
       overflow-x: auto;
-      font-family: Consolas, monospace;
       font-size: 12px;
       white-space: pre-wrap;
-      max-height: 400px;
-      overflow-y: auto;
+      word-break: break-word;
     }
 
-    /* =========================
-       HIDDEN
-       ========================= */
-
-    .hidden {
-      display: none !important;
+    .loading {
+      text-align: center;
+      padding: 15px;
+      font-weight: bold;
+      color: #666;
     }
 
-    /* =========================
-       MOBILE
-       ========================= */
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
 
-    @media (max-width: 750px) {
+      h1 {
+        font-size: 23px;
+      }
 
-      .teams {
+      .card {
+        padding: 14px;
+      }
+
+      .team-container {
         grid-template-columns: 1fr;
       }
 
-      .match-summary {
-        grid-template-columns: 1fr;
-      }
-
-      .controls {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .field {
-        min-width: 100%;
-      }
-
-      header h1 {
-        font-size: 22px;
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -389,263 +275,81 @@
 
 <body>
 
-<header>
-  <h1>🏏 Cricket Score Management</h1>
-  <p>
-    Batting orders are automatically loaded from the Player Selection application
-  </p>
-</header>
-
 <div class="container">
 
-  <!-- =========================
-       STATUS
-       ========================= -->
+  <h1>🏏 Cricket Score Management</h1>
 
-  <div id="status" class="status"></div>
+  <div id="message" class="message"></div>
 
-
-  <!-- =========================
-       STEP 1
-       SELECT GENERATION
-       ========================= -->
-
-  <div class="card">
+  <!-- STEP 1 -->
+  <div class="card" id="generationCard">
 
     <h2>1. Select Saved Batting Order</h2>
 
-    <div class="controls">
+    <label for="generationSelect">
+      Batting Order Generation
+    </label>
 
-      <div class="field">
+    <select id="generationSelect">
+      <option value="">Loading saved batting orders...</option>
+    </select>
 
-        <label for="generationSelect">
-          Saved Batting Order
-        </label>
-
-        <select id="generationSelect">
-
-          <option value="">
-            Loading saved batting orders...
-          </option>
-
-        </select>
-
-      </div>
-
-      <div>
-
-        <button
-          id="loadGenerationBtn"
-          disabled
-          onclick="loadSelectedGeneration()">
-
-          Load Batting Order
-
-        </button>
-
-      </div>
-
-      <div>
-
-        <button
-          class="secondary"
-          onclick="loadGenerations()">
-
-          Refresh
-
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div
-      id="generationInfo"
-      class="generation-info">
-
-      <div
-        id="generationTitle"
-        class="generation-title">
-      </div>
-
-      <div
-        id="generationDetails"
-        class="generation-details">
-      </div>
-
-    </div>
+    <button
+      id="loadGenerationBtn"
+      class="primary"
+      onclick="loadGeneration()"
+    >
+      Load Batting Order
+    </button>
 
   </div>
 
 
-  <!-- =========================
-       STEP 2
-       MATCH INFORMATION
-       ========================= -->
+  <!-- STEP 2 -->
+  <div class="card hidden" id="generationDetailsCard">
 
-  <div
-    id="matchSetupCard"
-    class="card hidden">
+    <h2>2. Batting Order</h2>
 
-    <h2>2. Match Information</h2>
+    <div class="info-grid">
 
-    <div class="controls">
-
-      <div class="field">
-
-        <label for="matchName">
-          Match Name
-        </label>
-
-        <input
-          type="text"
-          id="matchName"
-          placeholder="Example: Sunday League Match">
-
+      <div class="info-box">
+        <div class="info-label">Generation</div>
+        <div class="info-value" id="generationIdDisplay">-</div>
       </div>
 
-      <div class="field">
-
-        <label for="overs">
-          Overs
-        </label>
-
-        <input
-          type="number"
-          id="overs"
-          value="6"
-          min="1">
-
+      <div class="info-box">
+        <div class="info-label">Players</div>
+        <div class="info-value" id="playerCountDisplay">-</div>
       </div>
 
-      <div class="field">
+      <div class="info-box">
+        <div class="info-label">Cycle Size</div>
+        <div class="info-value" id="cycleSizeDisplay">-</div>
+      </div>
 
-        <label for="wickets">
-          Wickets
-        </label>
-
-        <input
-          type="number"
-          id="wickets"
-          value="6"
-          min="1">
-
+      <div class="info-box">
+        <div class="info-label">Generated At</div>
+        <div class="info-value" id="generatedAtDisplay">-</div>
       </div>
 
     </div>
 
-  </div>
+    <div class="team-container">
 
-
-  <!-- =========================
-       STEP 3
-       BATTING ORDER
-       ========================= -->
-
-  <div
-    id="battingCard"
-    class="card hidden">
-
-    <h2>3. Imported Batting Order</h2>
-
-    <div class="match-summary">
-
-      <div class="summary-item">
-
-        <div
-          id="displayGeneration"
-          class="summary-value">
-          -
-        </div>
-
-        <div class="summary-label">
-          Generation
-        </div>
-
-      </div>
-
-      <div class="summary-item">
-
-        <div
-          id="teamACount"
-          class="summary-value">
-          0
-        </div>
-
-        <div class="summary-label">
-          Team 1 Players
-        </div>
-
-      </div>
-
-      <div class="summary-item">
-
-        <div
-          id="teamBCount"
-          class="summary-value">
-          0
-        </div>
-
-        <div class="summary-label">
-          Team 2 Players
-        </div>
-
-      </div>
-
-    </div>
-
-    <br>
-
-    <div class="teams">
-
-      <!-- TEAM 1 -->
-
-      <div class="team-card">
-
-        <div class="team-header">
-
-          <span id="teamAName">
-            Team 1
-          </span>
-
+      <div class="team-box">
+        <div class="team-title" id="generationTeam1Title">
           Team 1
-
         </div>
 
-        <div id="teamAPlayers">
-
-          <div class="empty">
-            No batting order loaded
-          </div>
-
-        </div>
-
+        <div id="generationTeam1Players"></div>
       </div>
 
-
-      <!-- TEAM 2 -->
-
-      <div class="team-card">
-
-        <div class="team-header">
-
-          <span id="teamBName">
-            Team 2
-          </span>
-
+      <div class="team-box">
+        <div class="team-title" id="generationTeam2Title">
           Team 2
-
         </div>
 
-        <div id="teamBPlayers">
-
-          <div class="empty">
-            No batting order loaded
-          </div>
-
-        </div>
-
+        <div id="generationTeam2Players"></div>
       </div>
 
     </div>
@@ -653,98 +357,221 @@
   </div>
 
 
-  <!-- =========================
-       CREATE MATCH
-       ========================= -->
+  <!-- STEP 3 -->
+  <div class="card hidden" id="matchCard">
 
-  <div
-    id="createMatchCard"
-    class="card hidden">
+    <h2>3. Create Match</h2>
 
-    <h2>4. Create Match</h2>
+    <label for="matchName">
+      Match Name
+    </label>
 
-    <p style="color:#666;font-size:14px;">
-      The selected batting order will be imported into the
-      Score Management system and locked for this match.
-    </p>
+    <input
+      type="text"
+      id="matchName"
+      placeholder="Example: Sunday Match"
+    />
+
+    <label for="overs">
+      Number of Overs
+    </label>
+
+    <input
+      type="number"
+      id="overs"
+      value="13"
+      min="1"
+      max="100"
+    />
+
+    <label for="wickets">
+      Number of Wickets
+    </label>
+
+    <input
+      type="number"
+      id="wickets"
+      value="14"
+      min="1"
+      max="20"
+    />
 
     <button
       id="createMatchBtn"
       class="success"
-      onclick="createMatch()">
-
-      🏏 Create Match
-
+      onclick="createMatch()"
+    >
+      Create Match
     </button>
 
   </div>
 
 
-  <!-- =========================
-       MATCH CREATED
-       ========================= -->
+  <!-- STEP 4 -->
+  <div class="card hidden" id="matchCreatedCard">
 
-  <div
-    id="matchCreatedCard"
-    class="card match-created">
+    <h2>4. Match Created</h2>
 
-    <h2>✅ Match Created Successfully</h2>
+    <div class="match-id">
+      <strong>Match ID:</strong><br>
+      <span id="matchIdDisplay"></span>
+    </div>
 
-    <p style="color:#666;font-size:14px;">
-      The batting order has been imported and locked for this match.
+    <div class="info-grid">
+
+      <div class="info-box">
+        <div class="info-label">Match</div>
+        <div class="info-value" id="createdMatchName">-</div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-label">Status</div>
+        <div>
+          <span class="status" id="matchStatus">CREATED</span>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-label">Overs</div>
+        <div class="info-value" id="createdOvers">-</div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-label">Wickets</div>
+        <div class="info-value" id="createdWickets">-</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- STEP 5 -->
+  <div class="card hidden" id="inningsCard">
+
+    <h2>5. Start First Innings</h2>
+
+    <p>
+      Select which team is batting first and choose the opening
+      batsmen and bowler.
     </p>
 
-    <strong>Match ID</strong>
+    <label for="battingTeam">
+      Batting First
+    </label>
 
-    <div
-      id="matchId"
-      class="match-id-box">
-    </div>
+    <select
+      id="battingTeam"
+      onchange="updateInningsPlayers()"
+    >
+      <option value="">Select batting team</option>
+    </select>
 
-    <div class="locked-message">
 
-      🔒 Batting order is locked for this match.
-      The next step will be the live scoring screen.
+    <label for="striker">
+      Striker
+    </label>
 
-    </div>
+    <select id="striker" onchange="updateNonStriker()">
+      <option value="">Select striker</option>
+    </select>
 
-    <br>
+
+    <label for="nonStriker">
+      Non-Striker
+    </label>
+
+    <select id="nonStriker">
+      <option value="">Select non-striker</option>
+    </select>
+
+
+    <label for="bowler">
+      Opening Bowler
+    </label>
+
+    <select id="bowler">
+      <option value="">Select bowler</option>
+    </select>
+
 
     <button
-      onclick="prepareNextStep()">
-
-      Continue to Score Management
-
+      id="startInningsBtn"
+      class="success"
+      onclick="startInnings()"
+    >
+      🏏 Start Innings
     </button>
 
   </div>
 
 
-  <!-- =========================
-       API DEBUG
-       ========================= -->
+  <!-- STEP 6 -->
+  <div class="card hidden" id="inningsStartedCard">
 
-  <div class="card">
+    <h2>6. Match In Progress</h2>
 
-    <h2>
+    <div class="match-id">
+      <strong>Innings ID:</strong><br>
+      <span id="inningsIdDisplay"></span>
+    </div>
 
-      API Response
+    <div class="innings-summary">
 
-      <button
-        class="secondary"
-        style="float:right;padding:7px 12px;font-size:12px;"
-        onclick="toggleRawData()">
+      <div>
+        <strong>Batting First:</strong>
+        <span id="inningsBattingTeam"></span>
+      </div>
 
-        Show / Hide
+      <div>
+        <strong>Bowling:</strong>
+        <span id="inningsBowlingTeam"></span>
+      </div>
 
-      </button>
+      <div>
+        <strong>Striker:</strong>
+        <span id="inningsStriker"></span>
+      </div>
 
-    </h2>
+      <div>
+        <strong>Non-Striker:</strong>
+        <span id="inningsNonStriker"></span>
+      </div>
 
-    <pre
-      id="rawData"
-      class="raw-data">
-    </pre>
+      <div>
+        <strong>Bowler:</strong>
+        <span id="inningsBowler"></span>
+      </div>
+
+      <div>
+        <strong>Status:</strong>
+        <span class="status live">IN PROGRESS</span>
+      </div>
+
+    </div>
+
+    <button
+      class="primary"
+      onclick="showScoringComingSoon()"
+    >
+      📊 Continue to Live Scoring
+    </button>
+
+  </div>
+
+
+  <!-- DEBUG -->
+  <div class="debug">
+
+    <details>
+
+      <summary>
+        API Debug Information
+      </summary>
+
+      <pre id="debugOutput">No API call yet.</pre>
+
+    </details>
 
   </div>
 
@@ -753,942 +580,516 @@
 
 <script>
 
-/*
-==========================================================
-CONFIGURATION
-==========================================================
-*/
-
-const API_URL =
-  "https://script.google.com/macros/s/AKfycbzLwa1HU7GKqNxptYpsCkzffhg8ECxdkaK3eIkuoVn4A9HLuTPmnNHJY1YI6RqspB6JRg/exec";
+  const API_URL =
+    "https://script.google.com/macros/s/AKfycbzLwa1HU7GKqNxptYpsCkzffhg8ECxdkaK3eIkuoVn4A9HLuTPmnNHJY1YI6RqspB6JRg/exec";
 
 
-/*
-==========================================================
-GLOBAL VARIABLES
-==========================================================
-*/
-
-let generations = [];
-
-let selectedGeneration = null;
-
-let createdMatch = null;
+  let selectedGeneration = null;
+  let currentMatch = null;
+  let currentPlayers = [];
+  let currentInnings = null;
 
 
-/*
-==========================================================
-INITIALIZATION
-==========================================================
-*/
+  // ---------------------------------------------------------
+  // INITIAL LOAD
+  // ---------------------------------------------------------
 
-window.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
+  document.addEventListener("DOMContentLoaded", function() {
     loadGenerations();
-
-  }
-);
+  });
 
 
-/*
-==========================================================
-STATUS
-==========================================================
-*/
+  // ---------------------------------------------------------
+  // UI HELPERS
+  // ---------------------------------------------------------
 
-function showStatus(
-  message,
-  type = "info"
-) {
+  function showMessage(text, type) {
 
-  const status =
-    document.getElementById("status");
+    const message = document.getElementById("message");
 
-  status.className =
-    "status show " + type;
+    message.textContent = text;
 
-  status.textContent =
-    message;
+    message.className = "message";
 
-}
-
-
-/*
-==========================================================
-API GET
-==========================================================
-*/
-
-async function apiGet(
-  params
-) {
-
-  const url =
-    API_URL +
-    "?" +
-    new URLSearchParams(params)
-      .toString();
-
-  const response =
-    await fetch(
-      url,
-      {
-        method: "GET",
-        cache: "no-cache"
-      }
-    );
-
-  if (!response.ok) {
-
-    throw new Error(
-      "HTTP error " +
-      response.status
-    );
-
-  }
-
-  const data =
-    await response.json();
-
-  document.getElementById(
-    "rawData"
-  ).textContent =
-    JSON.stringify(
-      data,
-      null,
-      2
-    );
-
-  if (
-    data.success === false
-  ) {
-
-    throw new Error(
-      data.message ||
-      "API request failed"
-    );
-
-  }
-
-  return data;
-
-}
-
-
-/*
-==========================================================
-API POST
-==========================================================
-*/
-
-async function apiPost(
-  payload
-) {
-
-  const response =
-    await fetch(
-      API_URL,
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type":
-            "text/plain;charset=utf-8"
-        },
-
-        body:
-          JSON.stringify(payload)
-      }
-    );
-
-  if (!response.ok) {
-
-    throw new Error(
-      "HTTP error " +
-      response.status
-    );
-
-  }
-
-  const data =
-    await response.json();
-
-  document.getElementById(
-    "rawData"
-  ).textContent =
-    JSON.stringify(
-      data,
-      null,
-      2
-    );
-
-  if (
-    data.success === false
-  ) {
-
-    throw new Error(
-      data.message ||
-      "API request failed"
-    );
-
-  }
-
-  return data;
-
-}
-
-
-/*
-==========================================================
-LOAD SAVED GENERATIONS
-==========================================================
-*/
-
-async function loadGenerations() {
-
-  const select =
-    document.getElementById(
-      "generationSelect"
-    );
-
-  try {
-
-    showStatus(
-      "Loading saved batting orders...",
-      "info"
-    );
-
-    select.innerHTML =
-      "<option value=''>Loading...</option>";
-
-    document.getElementById(
-      "loadGenerationBtn"
-    ).disabled = true;
-
-
-    const data =
-      await apiGet(
-        {
-          action: "generations"
-        }
-      );
-
-
-    generations =
-      data.generations || [];
-
-
-    select.innerHTML =
-      "<option value=''>" +
-      "Select a saved batting order" +
-      "</option>";
-
-
-    if (
-      generations.length === 0
-    ) {
-
-      select.innerHTML =
-        "<option value=''>" +
-        "No saved batting orders found" +
-        "</option>";
-
-      showStatus(
-        "No saved batting-order generations were found.",
-        "error"
-      );
-
-      return;
-
+    if (type === "success") {
+      message.classList.add("success-msg");
     }
 
+    if (type === "error") {
+      message.classList.add("error-msg");
+    }
+  }
 
-    generations.forEach(
-      generation => {
+
+  function clearMessage() {
+
+    const message = document.getElementById("message");
+
+    message.textContent = "";
+    message.className = "message";
+  }
+
+
+  function debug(data) {
+
+    document.getElementById("debugOutput").textContent =
+      typeof data === "string"
+        ? data
+        : JSON.stringify(data, null, 2);
+  }
+
+
+  async function apiGet(params) {
+
+    const query = new URLSearchParams(params);
+
+    const url = API_URL + "?" + query.toString();
+
+    const response = await fetch(url);
+
+    const text = await response.text();
+
+    let data;
+
+    try {
+      data = JSON.parse(text);
+    } catch (error) {
+      throw new Error(
+        "Invalid API response:\n" + text
+      );
+    }
+
+    debug(data);
+
+    if (!data.success) {
+      throw new Error(
+        data.error || "API request failed."
+      );
+    }
+
+    return data;
+  }
+
+
+  async function apiPost(payload) {
+
+    const response = await fetch(API_URL, {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+
+      body: JSON.stringify(payload)
+
+    });
+
+    const text = await response.text();
+
+    let data;
+
+    try {
+      data = JSON.parse(text);
+    } catch (error) {
+      throw new Error(
+        "Invalid API response:\n" + text
+      );
+    }
+
+    debug(data);
+
+    if (!data.success) {
+      throw new Error(
+        data.error || "API request failed."
+      );
+    }
+
+    return data;
+  }
+
+
+  // ---------------------------------------------------------
+  // LOAD SAVED GENERATIONS
+  // ---------------------------------------------------------
+
+  async function loadGenerations() {
+
+    const select =
+      document.getElementById("generationSelect");
+
+    try {
+
+      select.innerHTML =
+        '<option value="">Loading...</option>';
+
+      const data = await apiGet({
+        action: "generations"
+      });
+
+      const generations =
+        data.generations || [];
+
+      if (generations.length === 0) {
+
+        select.innerHTML =
+          '<option value="">No batting orders found</option>';
+
+        showMessage(
+          "No saved batting-order generations were found.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      select.innerHTML =
+        '<option value="">Select a batting order</option>';
+
+
+      generations.forEach(function(generation) {
 
         const option =
-          document.createElement(
-            "option"
-          );
+          document.createElement("option");
 
         option.value =
           generation.generationId;
 
+        const date =
+          generation.generatedAt || "";
+
+        const players =
+          generation.playerCount || 0;
+
+        const teams =
+          generation.teamCount || 0;
+
         option.textContent =
-          formatGenerationOption(
-            generation
-          );
+          date +
+          " | " +
+          players +
+          " players | " +
+          teams +
+          " teams";
 
-        select.appendChild(
-          option
-        );
+        select.appendChild(option);
 
-      }
-    );
-
-
-    showStatus(
-      "Saved batting orders loaded successfully.",
-      "success"
-    );
+      });
 
 
-  } catch (error) {
-
-    console.error(
-      "Generation loading error:",
-      error
-    );
-
-    select.innerHTML =
-      "<option value=''>" +
-      "Unable to load batting orders" +
-      "</option>";
-
-
-    showStatus(
-      "Failed to load batting orders: " +
-      error.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/*
-==========================================================
-FORMAT GENERATION OPTION
-==========================================================
-*/
-
-function formatGenerationOption(
-  generation
-) {
-
-  const date =
-    formatDate(
-      generation.matchDate
-    );
-
-  const players =
-    generation.playerCount ||
-    0;
-
-  return (
-    date +
-    " — " +
-    generation.generationId +
-    " (" +
-    players +
-    " players)"
-  );
-
-}
-
-
-/*
-==========================================================
-SELECT GENERATION
-==========================================================
-*/
-
-document
-  .getElementById(
-    "generationSelect"
-  )
-  .addEventListener(
-    "change",
-    function () {
-
-      const value =
-        this.value;
-
-      document.getElementById(
-        "loadGenerationBtn"
-      ).disabled =
-        !value;
-
-    }
-  );
-
-
-/*
-==========================================================
-LOAD SELECTED GENERATION
-==========================================================
-*/
-
-async function loadSelectedGeneration() {
-
-  const generationId =
-    document.getElementById(
-      "generationSelect"
-    ).value;
-
-
-  if (!generationId) {
-
-    showStatus(
-      "Please select a batting order first.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  try {
-
-    document.getElementById(
-      "loadGenerationBtn"
-    ).disabled = true;
-
-
-    showStatus(
-      "Loading selected batting order...",
-      "info"
-    );
-
-
-    const data =
-      await apiGet(
-        {
-          action: "setup",
-          generationId:
-            generationId
-        }
+      showMessage(
+        "Saved batting orders loaded successfully.",
+        "success"
       );
 
+    } catch (error) {
 
-    selectedGeneration =
-      data.generation;
+      console.error(error);
 
+      select.innerHTML =
+        '<option value="">Failed to load batting orders</option>';
 
-    if (
-      !selectedGeneration
-    ) {
-
-      throw new Error(
-        "The API did not return generation data."
+      showMessage(
+        error.message,
+        "error"
       );
 
     }
 
-
-    displayGenerationInfo(
-      selectedGeneration
-    );
-
-
-    displayPlayers(
-      selectedGeneration.players || []
-    );
-
-
-    document
-      .getElementById(
-        "matchSetupCard"
-      )
-      .classList
-      .remove("hidden");
-
-
-    document
-      .getElementById(
-        "battingCard"
-      )
-      .classList
-      .remove("hidden");
-
-
-    document
-      .getElementById(
-        "createMatchCard"
-      )
-      .classList
-      .remove("hidden");
-
-
-    document
-      .getElementById(
-        "matchCreatedCard"
-      )
-      .classList
-      .remove("show");
-
-
-    showStatus(
-      "Batting order loaded successfully.",
-      "success"
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "Generation setup error:",
-      error
-    );
-
-    showStatus(
-      "Failed to load batting order: " +
-      error.message,
-      "error"
-    );
-
-  } finally {
-
-    document.getElementById(
-      "loadGenerationBtn"
-    ).disabled = false;
-
   }
 
-}
 
+  // ---------------------------------------------------------
+  // LOAD SELECTED GENERATION
+  // ---------------------------------------------------------
 
-/*
-==========================================================
-DISPLAY GENERATION INFORMATION
-==========================================================
-*/
+  async function loadGeneration() {
 
-function displayGenerationInfo(
-  generation
-) {
+    clearMessage();
 
-  const info =
-    document.getElementById(
-      "generationInfo"
-    );
+    const generationId =
+      document.getElementById("generationSelect").value;
 
+    if (!generationId) {
 
-  const title =
-    document.getElementById(
-      "generationTitle"
-    );
-
-
-  const details =
-    document.getElementById(
-      "generationDetails"
-    );
-
-
-  title.textContent =
-    "Generation: " +
-    generation.generationId;
-
-
-  const teamCounts =
-    generation.teamCounts || {};
-
-
-  const countText =
-    Object.entries(
-      teamCounts
-    )
-    .map(
-      ([team, count]) =>
-        team +
-        ": " +
-        count
-    )
-    .join(" • ");
-
-
-  details.innerHTML =
-    "Date: " +
-    escapeHtml(
-      formatDate(
-        generation.matchDate
-      )
-    ) +
-
-    " &nbsp; | &nbsp; " +
-
-    "Players: " +
-    (generation.playerCount || 0) +
-
-    " &nbsp; | &nbsp; " +
-
-    escapeHtml(
-      countText
-    );
-
-
-  info.classList.add(
-    "show"
-  );
-
-}
-
-
-/*
-==========================================================
-DISPLAY PLAYERS
-==========================================================
-*/
-
-function displayPlayers(
-  players
-) {
-
-  const teams = {};
-
-
-  players.forEach(
-    player => {
-
-      const team =
-        player.team ||
-        "Unknown Team";
-
-
-      if (!teams[team]) {
-
-        teams[team] = [];
-
-      }
-
-
-      teams[team].push(
-        player
+      showMessage(
+        "Please select a batting-order generation.",
+        "error"
       );
 
+      return;
     }
-  );
 
 
-  Object.values(
-    teams
-  ).forEach(
-    teamPlayers => {
-
-      teamPlayers.sort(
-        (
-          a,
-          b
-        ) =>
-          Number(
-            a.battingOrder
-          ) -
-          Number(
-            b.battingOrder
-          )
-      );
-
-    }
-  );
-
-
-  const teamNames =
-    Object.keys(
-      teams
-    );
-
-
-  const team1Name =
-    teamNames[0] ||
-    "Team 1";
-
-
-  const team2Name =
-    teamNames[1] ||
-    "Team 2";
-
-
-  const team1Players =
-    teams[team1Name] ||
-    [];
-
-
-  const team2Players =
-    teams[team2Name] ||
-    [];
-
-
-  document.getElementById(
-    "teamAName"
-  ).textContent =
-    team1Name;
-
-
-  document.getElementById(
-    "teamBName"
-  ).textContent =
-    team2Name;
-
-
-  document.getElementById(
-    "teamACount"
-  ).textContent =
-    team1Players.length;
-
-
-  document.getElementById(
-    "teamBCount"
-  ).textContent =
-    team2Players.length;
-
-
-  document.getElementById(
-    "displayGeneration"
-  ).textContent =
-    players.length;
-
-
-  renderTeamPlayers(
-    "teamAPlayers",
-    team1Players
-  );
-
-
-  renderTeamPlayers(
-    "teamBPlayers",
-    team2Players
-  );
-
-}
-
-
-/*
-==========================================================
-RENDER PLAYERS
-==========================================================
-*/
-
-function renderTeamPlayers(
-  containerId,
-  players
-) {
-
-  const container =
-    document.getElementById(
-      containerId
-    );
-
-
-  container.innerHTML =
-    "";
-
-
-  if (
-    !players ||
-    players.length === 0
-  ) {
-
-    container.innerHTML =
-      "<div class='empty'>" +
-      "No batting order available" +
-      "</div>";
-
-    return;
-
-  }
-
-
-  players.forEach(
-    player => {
-
-      const row =
-        document.createElement(
-          "div"
-        );
-
-
-      row.className =
-        "player-row";
-
-
-      const number =
-        document.createElement(
-          "div"
-        );
-
-
-      number.className =
-        "batting-number";
-
-
-      number.textContent =
-        player.battingOrder;
-
-
-      const info =
-        document.createElement(
-          "div"
-        );
-
-
-      info.className =
-        "player-info";
-
-
-      const name =
-        document.createElement(
-          "div"
-        );
-
-
-      name.className =
-        "player-name";
-
-
-      name.textContent =
-        player.playerName ||
-        "Unknown Player";
-
-
-      const id =
-        document.createElement(
-          "div"
-        );
-
-
-      id.className =
-        "player-id";
-
-
-      id.textContent =
-        "Player ID: " +
-        (
-          player.playerId ||
-          "-"
-        );
-
-
-      info.appendChild(
-        name
-      );
-
-
-      info.appendChild(
-        id
-      );
-
-
-      row.appendChild(
-        number
-      );
-
-
-      row.appendChild(
-        info
-      );
-
-
-      container.appendChild(
-        row
-      );
-
-    }
-  );
-
-}
-
-
-/*
-==========================================================
-CREATE MATCH
-==========================================================
-*/
-
-async function createMatch() {
-
-  if (
-    !selectedGeneration
-  ) {
-
-    showStatus(
-      "Please load a batting order first.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  const matchName =
-    document.getElementById(
-      "matchName"
-    ).value.trim();
-
-
-  const overs =
-    Number(
-      document.getElementById(
-        "overs"
-      ).value
-    );
-
-
-  const wickets =
-    Number(
-      document.getElementById(
-        "wickets"
-      ).value
-    );
-
-
-  if (
-    !overs ||
-    overs < 1
-  ) {
-
-    showStatus(
-      "Please enter a valid number of overs.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  if (
-    !wickets ||
-    wickets < 1
-  ) {
-
-    showStatus(
-      "Please enter a valid number of wickets.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  const button =
-    document.getElementById(
-      "createMatchBtn"
-    );
-
-
-  try {
+    const button =
+      document.getElementById("loadGenerationBtn");
 
     button.disabled = true;
+    button.textContent = "Loading...";
 
 
-    showStatus(
-      "Creating match...",
-      "info"
+    try {
+
+      const data = await apiGet({
+
+        action: "setup",
+
+        generationId: generationId
+
+      });
+
+
+      selectedGeneration =
+        data.generation;
+
+
+      displayGeneration(
+        data.generation,
+        data.cycleSize
+      );
+
+
+      document
+        .getElementById("generationDetailsCard")
+        .classList.remove("hidden");
+
+
+      document
+        .getElementById("matchCard")
+        .classList.remove("hidden");
+
+
+      showMessage(
+        "Batting order loaded successfully.",
+        "success"
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        error.message,
+        "error"
+      );
+
+    } finally {
+
+      button.disabled = false;
+      button.textContent = "Load Batting Order";
+
+    }
+
+  }
+
+
+  // ---------------------------------------------------------
+  // DISPLAY GENERATION
+  // ---------------------------------------------------------
+
+  function displayGeneration(generation, cycleSize) {
+
+    const players =
+      generation.players || [];
+
+    document.getElementById(
+      "generationIdDisplay"
+    ).textContent =
+      generation.generationId || "-";
+
+
+    document.getElementById(
+      "playerCountDisplay"
+    ).textContent =
+      players.length;
+
+
+    document.getElementById(
+      "cycleSizeDisplay"
+    ).textContent =
+      cycleSize || generation.cycleSize || "-";
+
+
+    document.getElementById(
+      "generatedAtDisplay"
+    ).textContent =
+      generation.generatedAt || "-";
+
+
+    const teams =
+      [...new Set(
+        players
+          .map(function(player) {
+            return player.team;
+          })
+          .filter(Boolean)
+      )];
+
+
+    const team1 =
+      teams[0] || "Team 1";
+
+    const team2 =
+      teams[1] || "Team 2";
+
+
+    document.getElementById(
+      "generationTeam1Title"
+    ).textContent =
+      team1;
+
+
+    document.getElementById(
+      "generationTeam2Title"
+    ).textContent =
+      team2;
+
+
+    const team1Players =
+      players
+        .filter(function(player) {
+          return player.team === team1;
+        })
+        .sort(function(a, b) {
+          return Number(a.battingOrder) -
+                 Number(b.battingOrder);
+        });
+
+
+    const team2Players =
+      players
+        .filter(function(player) {
+          return player.team === team2;
+        })
+        .sort(function(a, b) {
+          return Number(a.battingOrder) -
+                 Number(b.battingOrder);
+        });
+
+
+    renderPlayerList(
+      "generationTeam1Players",
+      team1Players
     );
 
 
-    const data =
-      await apiPost(
-        {
-          action:
-            "createMatch",
+    renderPlayerList(
+      "generationTeam2Players",
+      team2Players
+    );
+
+  }
+
+
+  function renderPlayerList(elementId, players) {
+
+    const container =
+      document.getElementById(elementId);
+
+    container.innerHTML = "";
+
+
+    players.forEach(function(player) {
+
+      const div =
+        document.createElement("div");
+
+      div.className = "player";
+
+      div.innerHTML =
+        '<span class="order">' +
+        escapeHtml(player.battingOrder) +
+        '</span>' +
+        escapeHtml(player.name);
+
+      container.appendChild(div);
+
+    });
+
+  }
+
+
+  // ---------------------------------------------------------
+  // CREATE MATCH
+  // ---------------------------------------------------------
+
+  async function createMatch() {
+
+    clearMessage();
+
+    if (!selectedGeneration) {
+
+      showMessage(
+        "Please load a batting order first.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    const matchName =
+      document.getElementById("matchName").value.trim();
+
+    const overs =
+      Number(
+        document.getElementById("overs").value
+      );
+
+    const wickets =
+      Number(
+        document.getElementById("wickets").value
+      );
+
+
+    if (!matchName) {
+
+      showMessage(
+        "Please enter a match name.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (!overs || overs < 1) {
+
+      showMessage(
+        "Please enter a valid number of overs.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (!wickets || wickets < 1) {
+
+      showMessage(
+        "Please enter a valid number of wickets.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    const button =
+      document.getElementById("createMatchBtn");
+
+    button.disabled = true;
+    button.textContent = "Creating Match...";
+
+
+    try {
+
+      const data =
+        await apiPost({
+
+          action: "createMatch",
 
           generationId:
             selectedGeneration.generationId,
@@ -1701,211 +1102,764 @@ async function createMatch() {
 
           wickets:
             wickets
-        }
+
+        });
+
+
+      currentMatch =
+        data.match;
+
+
+      document.getElementById(
+        "matchIdDisplay"
+      ).textContent =
+        currentMatch.matchId;
+
+
+      document.getElementById(
+        "createdMatchName"
+      ).textContent =
+        currentMatch.matchName;
+
+
+      document.getElementById(
+        "createdOvers"
+      ).textContent =
+        currentMatch.overs;
+
+
+      document.getElementById(
+        "createdWickets"
+      ).textContent =
+        currentMatch.wickets;
+
+
+      document.getElementById(
+        "matchStatus"
+      ).textContent =
+        currentMatch.status;
+
+
+      document
+        .getElementById("matchCreatedCard")
+        .classList.remove("hidden");
+
+
+      // Load complete match details
+      await loadMatchDetails(
+        currentMatch.matchId
       );
 
 
-    createdMatch =
+      // Disable match creation
+      button.disabled = true;
+      button.textContent = "Match Created";
+
+
+      showMessage(
+        "Match created successfully. Now start the first innings.",
+        "success"
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        error.message,
+        "error"
+      );
+
+      button.disabled = false;
+      button.textContent = "Create Match";
+
+    }
+
+  }
+
+
+  // ---------------------------------------------------------
+  // LOAD MATCH DETAILS
+  // ---------------------------------------------------------
+
+  async function loadMatchDetails(matchId) {
+
+    const data =
+      await apiGet({
+
+        action: "match",
+
+        matchId: matchId
+
+      });
+
+
+    currentMatch =
       data.match;
+
+    currentPlayers =
+      data.players || [];
 
 
     if (
-      !createdMatch
+      data.innings &&
+      data.innings.length > 0
     ) {
 
-      throw new Error(
-        "The API did not return a Match ID."
+      currentInnings =
+        data.innings[
+          data.innings.length - 1
+        ];
+
+      displayExistingInnings();
+
+      return;
+    }
+
+
+    prepareInningsSetup();
+
+  }
+
+
+  // ---------------------------------------------------------
+  // PREPARE INNINGS SETUP
+  // ---------------------------------------------------------
+
+  function prepareInningsSetup() {
+
+    const teams =
+      [...new Set(
+        currentPlayers
+          .map(function(player) {
+            return player.team;
+          })
+          .filter(Boolean)
+      )];
+
+
+    const battingTeamSelect =
+      document.getElementById("battingTeam");
+
+
+    battingTeamSelect.innerHTML =
+      '<option value="">Select batting team</option>';
+
+
+    teams.forEach(function(team) {
+
+      const option =
+        document.createElement("option");
+
+      option.value = team;
+      option.textContent = team;
+
+      battingTeamSelect.appendChild(option);
+
+    });
+
+
+    document
+      .getElementById("inningsCard")
+      .classList.remove("hidden");
+
+  }
+
+
+  // ---------------------------------------------------------
+  // UPDATE PLAYERS WHEN BATTING TEAM CHANGES
+  // ---------------------------------------------------------
+
+  function updateInningsPlayers() {
+
+    const battingTeam =
+      document.getElementById(
+        "battingTeam"
+      ).value;
+
+
+    const striker =
+      document.getElementById("striker");
+
+    const nonStriker =
+      document.getElementById("nonStriker");
+
+    const bowler =
+      document.getElementById("bowler");
+
+
+    striker.innerHTML =
+      '<option value="">Select striker</option>';
+
+    nonStriker.innerHTML =
+      '<option value="">Select non-striker</option>';
+
+    bowler.innerHTML =
+      '<option value="">Select bowler</option>';
+
+
+    if (!battingTeam) {
+      return;
+    }
+
+
+    const battingPlayers =
+      currentPlayers
+        .filter(function(player) {
+          return player.team === battingTeam;
+        })
+        .sort(function(a, b) {
+          return Number(a.battingOrder) -
+                 Number(b.battingOrder);
+        });
+
+
+    const bowlingTeams =
+      [...new Set(
+        currentPlayers
+          .filter(function(player) {
+            return player.team !== battingTeam;
+          })
+          .map(function(player) {
+            return player.team;
+          })
+      )];
+
+
+    battingPlayers.forEach(function(player) {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        player.playerId;
+
+      option.textContent =
+        player.battingOrder +
+        ". " +
+        player.name;
+
+      striker.appendChild(option);
+
+    });
+
+
+    battingPlayers.forEach(function(player) {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        player.playerId;
+
+      option.textContent =
+        player.battingOrder +
+        ". " +
+        player.name;
+
+      nonStriker.appendChild(option);
+
+    });
+
+
+    const bowlingPlayers =
+      currentPlayers
+        .filter(function(player) {
+          return player.team !== battingTeam;
+        })
+        .sort(function(a, b) {
+          return Number(a.battingOrder) -
+                 Number(b.battingOrder);
+        });
+
+
+    bowlingPlayers.forEach(function(player) {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        player.playerId;
+
+      option.textContent =
+        player.name +
+        " (" +
+        player.team +
+        ")";
+
+      bowler.appendChild(option);
+
+    });
+
+
+    // Select first two batsmen automatically
+    if (battingPlayers.length >= 2) {
+
+      striker.value =
+        battingPlayers[0].playerId;
+
+      updateNonStriker();
+
+    }
+
+  }
+
+
+  // ---------------------------------------------------------
+  // UPDATE NON-STRIKER
+  // ---------------------------------------------------------
+
+  function updateNonStriker() {
+
+    const strikerId =
+      document.getElementById(
+        "striker"
+      ).value;
+
+
+    const battingTeam =
+      document.getElementById(
+        "battingTeam"
+      ).value;
+
+
+    const nonStriker =
+      document.getElementById(
+        "nonStriker"
       );
+
+
+    nonStriker.innerHTML =
+      '<option value="">Select non-striker</option>';
+
+
+    if (!strikerId || !battingTeam) {
+      return;
+    }
+
+
+    const battingPlayers =
+      currentPlayers
+        .filter(function(player) {
+
+          return (
+            player.team === battingTeam &&
+            player.playerId !== strikerId
+          );
+
+        })
+        .sort(function(a, b) {
+          return Number(a.battingOrder) -
+                 Number(b.battingOrder);
+        });
+
+
+    battingPlayers.forEach(function(player) {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        player.playerId;
+
+      option.textContent =
+        player.battingOrder +
+        ". " +
+        player.name;
+
+      nonStriker.appendChild(option);
+
+    });
+
+
+    if (battingPlayers.length > 0) {
+
+      nonStriker.value =
+        battingPlayers[0].playerId;
+
+    }
+
+  }
+
+
+  // ---------------------------------------------------------
+  // START INNINGS
+  // ---------------------------------------------------------
+
+  async function startInnings() {
+
+    clearMessage();
+
+    if (!currentMatch) {
+
+      showMessage(
+        "Match information is not available.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    const battingTeam =
+      document.getElementById(
+        "battingTeam"
+      ).value;
+
+
+    const strikerId =
+      document.getElementById(
+        "striker"
+      ).value;
+
+
+    const nonStrikerId =
+      document.getElementById(
+        "nonStriker"
+      ).value;
+
+
+    const bowlerId =
+      document.getElementById(
+        "bowler"
+      ).value;
+
+
+    if (!battingTeam) {
+
+      showMessage(
+        "Please select the batting team.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (!strikerId) {
+
+      showMessage(
+        "Please select the striker.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (!nonStrikerId) {
+
+      showMessage(
+        "Please select the non-striker.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (strikerId === nonStrikerId) {
+
+      showMessage(
+        "Striker and non-striker must be different.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (!bowlerId) {
+
+      showMessage(
+        "Please select the opening bowler.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    const button =
+      document.getElementById(
+        "startInningsBtn"
+      );
+
+
+    button.disabled = true;
+    button.textContent =
+      "Starting Innings...";
+
+
+    try {
+
+      const data =
+        await apiPost({
+
+          action: "startInnings",
+
+          matchId:
+            currentMatch.matchId,
+
+          battingTeam:
+            battingTeam,
+
+          strikerId:
+            strikerId,
+
+          nonStrikerId:
+            nonStrikerId,
+
+          bowlerId:
+            bowlerId
+
+        });
+
+
+      currentInnings =
+        data.innings;
+
+
+      displayStartedInnings(
+        data.innings
+      );
+
+
+      // Lock innings setup
+      document
+        .getElementById("battingTeam")
+        .disabled = true;
+
+      document
+        .getElementById("striker")
+        .disabled = true;
+
+      document
+        .getElementById("nonStriker")
+        .disabled = true;
+
+      document
+        .getElementById("bowler")
+        .disabled = true;
+
+
+      button.disabled = true;
+      button.textContent =
+        "Innings Started";
+
+
+      showMessage(
+        "First innings started successfully.",
+        "success"
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        error.message,
+        "error"
+      );
+
+      button.disabled = false;
+      button.textContent =
+        "🏏 Start Innings";
+
+    }
+
+  }
+
+
+  // ---------------------------------------------------------
+  // DISPLAY STARTED INNINGS
+  // ---------------------------------------------------------
+
+  function displayStartedInnings(innings) {
+
+    const striker =
+      findPlayer(innings.strikerId);
+
+    const nonStriker =
+      findPlayer(innings.nonStrikerId);
+
+    const bowler =
+      findPlayer(innings.bowlerId);
+
+
+    document.getElementById(
+      "inningsIdDisplay"
+    ).textContent =
+      innings.inningsId;
+
+
+    document.getElementById(
+      "inningsBattingTeam"
+    ).textContent =
+      innings.team;
+
+
+    document.getElementById(
+      "inningsBowlingTeam"
+    ).textContent =
+      getOppositeTeam(innings.team);
+
+
+    document.getElementById(
+      "inningsStriker"
+    ).textContent =
+      striker
+        ? striker.name
+        : innings.strikerId;
+
+
+    document.getElementById(
+      "inningsNonStriker"
+    ).textContent =
+      nonStriker
+        ? nonStriker.name
+        : innings.nonStrikerId;
+
+
+    document.getElementById(
+      "inningsBowler"
+    ).textContent =
+      bowler
+        ? bowler.name
+        : innings.bowlerId;
+
+
+    document
+      .getElementById("inningsStartedCard")
+      .classList.remove("hidden");
+
+
+    document
+      .getElementById("inningsCard")
+      .classList.add("hidden");
+
+  }
+
+
+  // ---------------------------------------------------------
+  // DISPLAY EXISTING INNINGS
+  // ---------------------------------------------------------
+
+  function displayExistingInnings() {
+
+    if (!currentInnings) {
+      return;
+    }
+
+
+    displayStartedInnings(
+      currentInnings
+    );
+
+
+    document
+      .getElementById("matchStatus")
+      .textContent =
+      "IN_PROGRESS";
+
+
+    const status =
+      document.getElementById(
+        "matchStatus"
+      );
+
+    status.classList.add("live");
+
+
+    showMessage(
+      "This match already has an innings in progress.",
+      "success"
+    );
+
+  }
+
+
+  // ---------------------------------------------------------
+  // PLAYER HELPERS
+  // ---------------------------------------------------------
+
+  function findPlayer(playerId) {
+
+    return currentPlayers.find(
+      function(player) {
+
+        return player.playerId === playerId;
+
+      }
+    );
+
+  }
+
+
+  function getOppositeTeam(team) {
+
+    const teams =
+      [...new Set(
+        currentPlayers
+          .map(function(player) {
+            return player.team;
+          })
+          .filter(Boolean)
+      )];
+
+
+    return teams.find(
+      function(item) {
+        return item !== team;
+      }
+    ) || "-";
+
+  }
+
+
+  // ---------------------------------------------------------
+  // HTML ESCAPE
+  // ---------------------------------------------------------
+
+  function escapeHtml(value) {
+
+    if (value === null ||
+        value === undefined) {
+
+      return "";
 
     }
 
 
-    document.getElementById(
-      "matchId"
-    ).textContent =
-      createdMatch.matchId;
+    return String(value)
 
+      .replace(/&/g, "&amp;")
 
-    document
-      .getElementById(
-        "matchCreatedCard"
-      )
-      .classList
-      .add("show");
+      .replace(/</g, "&lt;")
 
+      .replace(/>/g, "&gt;")
 
-    showStatus(
-      "Match created successfully.",
-      "success"
-    );
+      .replace(/"/g, "&quot;")
 
-
-    button.textContent =
-      "Match Created";
-
-
-  } catch (error) {
-
-    console.error(
-      "Create match error:",
-      error
-    );
-
-
-    showStatus(
-      "Failed to create match: " +
-      error.message,
-      "error"
-    );
-
-
-    button.disabled = false;
-
-  }
-
-}
-
-
-/*
-==========================================================
-NEXT STEP
-==========================================================
-*/
-
-function prepareNextStep() {
-
-  if (
-    !createdMatch
-  ) {
-
-    return;
+      .replace(/'/g, "&#039;");
 
   }
 
 
-  alert(
-    "Match setup is complete.\n\n" +
+  // ---------------------------------------------------------
+  // LIVE SCORING PLACEHOLDER
+  // ---------------------------------------------------------
 
-    "Match ID:\n" +
+  function showScoringComingSoon() {
 
-    createdMatch.matchId +
-
-    "\n\n" +
-
-    "The Live Score Management screen " +
-
-    "will be added in the next step."
-  );
-
-}
-
-
-/*
-==========================================================
-DATE FORMAT
-==========================================================
-*/
-
-function formatDate(
-  value
-) {
-
-  if (!value) {
-
-    return "Unknown date";
-
-  }
-
-
-  const date =
-    new Date(value);
-
-
-  if (
-    isNaN(
-      date.getTime()
-    )
-  ) {
-
-    return String(
-      value
+    alert(
+      "Live scoring is the next step.\n\n" +
+      "The match and first innings are now ready."
     );
 
   }
-
-
-  return date.toLocaleString();
-
-}
-
-
-/*
-==========================================================
-HTML ESCAPE
-==========================================================
-*/
-
-function escapeHtml(
-  value
-) {
-
-  return String(
-    value ?? ""
-  )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-  .replace(
-    /'/g,
-    "&#039;"
-  );
-
-}
-
-
-/*
-==========================================================
-RAW API DATA
-==========================================================
-*/
-
-function toggleRawData() {
-
-  const rawData =
-    document.getElementById(
-      "rawData"
-    );
-
-
-  if (
-    rawData.style.display ===
-    "block"
-  ) {
-
-    rawData.style.display =
-      "none";
-
-  } else {
-
-    rawData.style.display =
-      "block";
-
-  }
-
-}
 
 </script>
 
